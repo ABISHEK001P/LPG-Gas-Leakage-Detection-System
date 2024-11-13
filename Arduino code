@@ -1,0 +1,25 @@
+const int gasSensorPin = A0;
+ const int buzzerPin = 8;
+ const int ledPin = 9;
+ const int gasThreshold = 300;
+ void setup() {
+  pinMode(gasSensorPin, INPUT);
+  pinMode(buzzerPin, OUTPUT);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+ }
+ void loop() {
+  int gasLevel = analogRead(gasSensorPin);
+  Serial.print("Gas Level: ");
+  Serial.println(gasLevel);
+  if (gasLevel > gasThreshold) {
+    digitalWrite(buzzerPin, HIGH);
+    digitalWrite(ledPin, HIGH);
+    Serial.println("Gas leak detected! Warning alert 
+triggered.");
+  } else {
+    digitalWrite(buzzerPin, LOW);
+    digitalWrite(ledPin, LOW);
+  }
+  delay(500);
+ }
